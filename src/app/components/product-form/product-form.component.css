@@ -1,0 +1,31 @@
+.product-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background-color: #ebf1c4;
+    border-bottom: 0.1em solid black;
+}
+
+td {
+    border-bottom: 0.05em solid #efefef;
+}
+
+th, td {
+    padding: 0.2em;
+    border-bottom: 0.1em solid black;
+}
+
+form {
+    display: flex;
+}

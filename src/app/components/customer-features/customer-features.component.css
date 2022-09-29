@@ -1,0 +1,23 @@
+.customer-features-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1em;
+    gap: 3em;
+}
+
+button {
+    margin-right: 1em;
+    height: 3em;
+}
+
+input {
+    margin-top: 0.5em;
+}
+
+input[type=text] {
+    font-size: 1.1rem;
+}
+
+label {
+    font-size: 1.2rem;
+}

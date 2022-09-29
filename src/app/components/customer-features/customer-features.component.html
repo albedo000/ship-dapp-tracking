@@ -1,0 +1,11 @@
+<div class="customer-features-container">
+    <form class="insert-form" [formGroup]="payForm" (submit)="pay()">
+        <label for="amount">Pay order (ETH)</label>
+        <input type="text" id="amount" formControlName="amount">
+        <input type="submit" value="Send">
+    </form>
+    <div class="features">
+        <button id="refund" (click)="refund()">Ask for a refund</button>
+        <button id="withdraw" (click)="withdraw()">Withdraw funds</button>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <app-deploy-form [contractAddress]="address" (deployRequest)="deployContract($event)"
+        (searchRequest)="connect($event)"></app-deploy-form>
+    <app-contract-state *ngIf="address !== undefined" [logistic]="contract" [contractAddress]="address" [state]="state"
+        [buyer]="buyer" [seller]="seller" [transport]="transport">
+    </app-contract-state>
+    <app-product-form [logistic]="contract" [user]="user" [state]="state"></app-product-form>
+</div>
+<ng-template appLoadFeatures [user]="user" [logistic]="contract" (changeState)="getState()"></ng-template>

@@ -1,0 +1,26 @@
+.vector-features-container {
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-top: 0.5em;
+    font-size: 1.1rem;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+.received {
+    margin-top: 1em;
+    justify-content: left;
+}

@@ -1,0 +1,29 @@
+.navbar-container {
+    display: flex;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+ul {
+    display: flex;
+    gap: 2em;
+}
+
+li {
+    list-style-type: none;
+}
+
+li:hover {
+    text-decoration: underline #000000;
+}
+
+a {
+    text-decoration: none;
+    text-align: left;
+    font-size: 1.8rem;
+    color: #000000;
+}

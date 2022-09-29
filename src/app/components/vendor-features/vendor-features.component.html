@@ -1,0 +1,14 @@
+<div class="vendor-features-container">
+    <div class="deliver-to-vector">
+        <h3>Prepare for delivery</h3>
+        <form id="transport" [formGroup]="transportationForm" (submit)="transport()">
+            <label for="vector-address">Vector Address:</label>
+            <input type="text" id="vector-address" formControlName="vectorAddress">
+            <input type="submit" value="Confirm Delivery">
+        </form>
+    </div>
+    <div class="features">
+        <button id="refund" (click)="acceptRefund()">Accept Refund</button>
+        <button id="gain" (click)="gain()">Withdraw Funds</button>
+    </div>
+</div>
