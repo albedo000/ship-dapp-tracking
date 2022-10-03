@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "D:\\Progetti\\ship-dapp-tracking\\chain\\contracts\\logistic.sol": {
-      "lastModificationDate": 1664309085998,
-      "contentHash": "3938d08a4605096fa5129614283afbb9",
+      "lastModificationDate": 1664802753554,
+      "contentHash": "2870091e000cf83c3794dd397c694cf6",
       "sourceName": "chain/contracts/logistic.sol",
       "solcConfig": {
         "version": "0.8.9",

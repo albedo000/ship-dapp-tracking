@@ -15,7 +15,7 @@ contract logistic {
     }
 
     Product[] public product;
-    uint256 public total;
+    
     uint256 public toPay;
     uint256 public funds;
     uint256 public pendingReturns;
@@ -59,7 +59,6 @@ contract logistic {
     constructor(address payable _buyer) {
         seller = msg.sender;
         buyer = _buyer;
-        total = 0;
     }
 
     function getSeller() external view returns(address) {
@@ -84,14 +83,15 @@ contract logistic {
         uint256 _price,
         uint256 _quantity
     ) public onlyBuyer {
-        Product memory p = Product({
+
+        Product memory _p = Product({
             id: _id,
             description: _description,
             price: _price,
             quantity: _quantity
         });
 
-        product.push(p);
+        product.push(_p);
         emit productAdd();
         calculateTotal();
     }
@@ -101,15 +101,20 @@ contract logistic {
     }
 
     function calculateTotal() public {
+
+        uint256 _total;
+        
         for (uint256 i = 0; i < product.length; i++) {
-            total += (product[i].price * product[i].quantity);
+            _total += (product[i].price * product[i].quantity);
         }
-        toPay = total;
+        toPay = _total;
     }
 
     function pay(uint256 _pay) external payable {
-        require(total > 0, "Please insert some product!");
+
+        require(toPay > 0, "Please insert some product!");
         require(state == stateOfShipping.ORDER, "Already paid!");
+
         funds += _pay;
         toPay -= _pay;
         if (toPay == 0) {
