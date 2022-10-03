@@ -117,6 +117,7 @@ contract logistic {
 
         funds += _pay;
         toPay -= _pay;
+        
         if (toPay == 0) {
             state = stateOfShipping.PAY;
             emit changeState();
