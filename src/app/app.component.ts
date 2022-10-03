@@ -4,6 +4,8 @@ import { ethers } from 'ethers';
 
 import data from '../../chain/artifacts/chain/contracts/logistic.sol/logistic.json';
 
+import { ContractService } from './services/contract.service';
+
 import { User } from './utilities/user-type';
 
 declare let window: any;
@@ -29,29 +31,20 @@ export class AppComponent {
   provider = new ethers.providers.Web3Provider(window.ethereum);
   signer = this.provider.getSigner();
 
-  constructor() {}
+  constructor(private contractService: ContractService) {}
 
   async deployContract(customerAddress: string): Promise<void> {
-    await this.provider.send("eth_requestAccounts", []);
-    const factory = new ethers.ContractFactory(data.abi, data.bytecode, this.signer);
-    this.contract = await factory.deploy(customerAddress);
-    await this.contract.deployed();
-    this.user = User.seller;
-    this.buyer = customerAddress;
+    [this.contract, this.address] = await this.contractService.deploy(customerAddress, this.provider, data.abi, data.bytecode, this.signer);
+    [ this.user, this.buyer, this.address ] = [ User.seller, customerAddress, this.contract.address ];
     this.seller = await this.signer.getAddress();
-    this.address = this.contract.address;
     this.getState();
   }
 
   async connect(address: string): Promise<void> {
-    await this.provider.send("eth_requestAccounts", []);
-    this.contract = new ethers.Contract(address, data.abi, this.signer);
+    let signerAddress = await this.signer.getAddress();
+    [ this.contract, this.seller, this.buyer, this.transport ] = await this.contractService.connect(address, this.provider, data.abi, this.signer);
     this.getState();
     this.address = address;
-    let signerAddress = await this.signer.getAddress();
-    this.seller = await this.contract['getSeller']();
-    this.buyer = await this.contract['getBuyer']();
-    this.transport = await this.contract['getTransport']();
     switch(signerAddress) {
       case this.seller:
         this.user = User.seller;
