@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { DataStreamService } from 'src/app/services/data-stream.service';
+
 declare var QRCode: any;
 
 @Component({
@@ -15,18 +17,19 @@ export class DeployFormComponent implements OnInit, OnChanges {
 
   public qrcode: any;
 
-  href!: string;
+  qrDiv!: HTMLElement;
 
   error: string | undefined;
   public ethereum_regex = /^0x[a-fA-F0-9]{40}$/;
 
   @Input() contractAddress!: string;
 
-  constructor() {
+  constructor(private dataStream: DataStreamService) {
   }
 
   ngOnInit(): void {
-    this.qrcode = new QRCode(document.getElementById('qr'), 'welcome');
+    this.qrDiv = document.getElementById('qr')!;
+    this.qrcode = new QRCode(this.qrDiv, 'welcome');
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
@@ -68,9 +71,11 @@ export class DeployFormComponent implements OnInit, OnChanges {
   }
 
   download() {
-    
+    this.dataStream.downloadQR(this.qrDiv);
   }
 
-  upload() { }
+  upload() {
+    this.dataStream.uploadQR();
+  }
 
 }
