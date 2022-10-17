@@ -13,6 +13,7 @@ import { VectorFeaturesComponent } from './components/vector-features/vector-fea
 import { ContractStateComponent } from './components/contract-state/contract-state.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadFeaturesDirective } from './directives/load-features.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoadFeaturesDirective } from './directives/load-features.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

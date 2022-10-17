@@ -25,7 +25,8 @@
                 <path d="M12 9h2V8h-2v1Z" />
             </svg>
             Download QR</button>
-        <button class="deploy-button" id="upload" (click)="upload()">
+        <input hidden type="file" name="qr-upload" #uploader (change)="upload($event)">
+        <button class="deploy-button" type="file" id="upload" (click)="uploader.click()">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload"
                 viewBox="0 0 16 16">
                 <path

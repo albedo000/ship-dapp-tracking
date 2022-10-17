@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+#PHP Backend
+src/assets/backend/vendor
+
 # IDEs and editors
 .idea/
 .project

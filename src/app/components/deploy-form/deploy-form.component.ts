@@ -70,12 +70,21 @@ export class DeployFormComponent implements OnInit, OnChanges {
     }
   }
 
-  download() {
+  download(): void {
     this.dataStream.downloadQR(this.qrDiv);
   }
 
-  upload() {
-    this.dataStream.uploadQR();
+  upload($event: any): void {
+    let formData = new FormData();
+    let uploadedQR: File = $event.target.files[0];
+
+    formData.append("qr-upload", uploadedQR);
+
+    this.dataStream.uploadQR(formData)
+    .subscribe((res) => {
+      this.searchForm.setValue({searchAddress: res});
+      this.search();
+    }); 
   }
 
 }
