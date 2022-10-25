@@ -66,7 +66,7 @@ export class DeployFormComponent implements OnInit, OnChanges {
     if (input.match(this.ethereum_regex)) {
       this.searchRequest.emit(input);
     } else {
-      this.error = "Please insert a valid ETH address!";
+      this.error = "ETH address not valid!";
     }
   }
 
@@ -82,10 +82,15 @@ export class DeployFormComponent implements OnInit, OnChanges {
       formData.append("qr-upload", uploadedQR);
 
       this.dataStream.uploadQR(formData)
-        .subscribe((res) => {
-          this.searchForm.setValue({ searchAddress: res });
-          this.search();
-        });
+        .subscribe({
+          next: (res) => {
+            this.searchForm.setValue({ searchAddress: res });
+            this.search();
+          },
+          error: (err) => {
+            this.error = "Something's gone wrong...";
+            console.log(err);
+          }});
     } else {
       this.error = "Wrong QR format! QR must be an image!";
     }
