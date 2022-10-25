@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
-import {ethers} from 'ethers';
+import { ethers } from 'ethers';
 
 
 @Component({

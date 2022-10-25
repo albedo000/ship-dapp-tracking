@@ -78,13 +78,17 @@ export class DeployFormComponent implements OnInit, OnChanges {
     let formData = new FormData();
     let uploadedQR: File = $event.target.files[0];
 
-    formData.append("qr-upload", uploadedQR);
+    if (['jpg', 'jpeg', 'png'].includes(uploadedQR.type)) {
+      formData.append("qr-upload", uploadedQR);
 
-    this.dataStream.uploadQR(formData)
-    .subscribe((res) => {
-      this.searchForm.setValue({searchAddress: res});
-      this.search();
-    }); 
+      this.dataStream.uploadQR(formData)
+        .subscribe((res) => {
+          this.searchForm.setValue({ searchAddress: res });
+          this.search();
+        });
+    } else {
+      this.error = "Wrong QR format! QR must be an image!";
+    }
   }
 
 }

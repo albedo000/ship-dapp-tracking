@@ -27,11 +27,8 @@ export class DataStreamService {
   }
 
   uploadQR(qrUpload: FormData): Observable<any> {
-    
     let headers = new HttpHeaders();
-
     headers.append('Content-Type', 'multipart/form-data');
-
     return this.http.post(this.backendPath, qrUpload, { headers: headers });
   }
 
