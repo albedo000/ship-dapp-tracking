@@ -31,9 +31,9 @@ contract logistic {
 
     stateOfShipping public state;
 
-    event productAdd();
-    event changeState();
-    event handover(address);
+    event productAdd(Product indexed);
+    event changeState(stateOfShipping indexed);
+    event handover(address indexed);
 
     modifier onlyBuyer() {
         require(msg.sender == buyer, "Only customer can use this function.");
@@ -92,7 +92,7 @@ contract logistic {
         });
 
         product.push(_p);
-        emit productAdd();
+        emit productAdd(_p);
         calculateTotal();
     }
 
@@ -120,7 +120,7 @@ contract logistic {
         
         if (toPay == 0) {
             state = stateOfShipping.PAY;
-            emit changeState();
+            emit changeState(state);
         }
     }
 
@@ -128,19 +128,19 @@ contract logistic {
         require(state == stateOfShipping.PAY, "Not paid!");
         transport = _transport;
         state = stateOfShipping.HANDOVER;
-        emit changeState();
+        emit changeState(state);
         emit handover(_transport);
     }
 
     function delegate(address _delegate) public onlyTransport {
         transport = _delegate;
-        emit changeState();
+        emit changeState(state);
         emit handover(_delegate);
     }
 
     function received() public onlyTransport {
         state = stateOfShipping.RECEIVED;
-        emit changeState();
+        emit changeState(state);
     }
 
     function refund() public withdrawable {
@@ -150,7 +150,7 @@ contract logistic {
             funds = 0;
         }
         state = stateOfShipping.REFUND;
-        emit changeState();
+        emit changeState(state);
     }
 
     function withdraw() public onlyBuyer {
@@ -162,7 +162,7 @@ contract logistic {
     function gain() public onlySeller withdrawable {
         require(state == stateOfShipping.RECEIVED);
         state = stateOfShipping.CLOSED;
-        emit changeState();
+        emit changeState(state);
         require(funds > 0);
         funds = 0;
         payable(seller).transfer(address(this).balance);
