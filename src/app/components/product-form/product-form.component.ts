@@ -44,6 +44,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
     if (this.user === User.buyer && this.state === 0) {
       this.showForm = !this.showForm;
     }
+    if (this.state !== 0) this.showForm = false;
   }
 
   async getProduct(): Promise<void> {

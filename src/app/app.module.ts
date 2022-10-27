@@ -14,6 +14,7 @@ import { ContractStateComponent } from './components/contract-state/contract-sta
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoadFeaturesDirective } from './directives/load-features.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { EnableDisableDirective } from './directives/enable-disable.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     VectorFeaturesComponent,
     ContractStateComponent,
     NavbarComponent,
-    LoadFeaturesDirective
+    LoadFeaturesDirective,
+    EnableDisableDirective
   ],
   imports: [
     BrowserModule,
