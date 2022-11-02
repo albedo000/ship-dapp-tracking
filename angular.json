@@ -93,7 +93,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "assets/js/qrcode.min.js"
+              ".src/assets/js/qrcode.min.js"
             ]
           }
         }

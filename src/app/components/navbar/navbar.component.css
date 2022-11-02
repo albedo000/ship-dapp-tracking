@@ -1,29 +1,32 @@
 .navbar-container {
     display: flex;
+    justify-content: center;
 }
 
 nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 ul {
     display: flex;
-    gap: 2em;
+    justify-content: center;
 }
 
 li {
+    display: inline-block;
+    margin: 0 3em;
     list-style-type: none;
-}
-
-li:hover {
-    text-decoration: underline #000000;
+    text-align: center;
 }
 
 a {
     text-decoration: none;
-    text-align: left;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #000000;
+}
+
+a:hover {
+    color: #e9e9e9;
 }
