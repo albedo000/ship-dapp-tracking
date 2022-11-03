@@ -16,6 +16,7 @@ contract logistic {
 
     Product[] public product;
     
+    uint256 public total;
     uint256 public toPay;
     uint256 public funds;
     uint256 public pendingReturns;
@@ -61,6 +62,10 @@ contract logistic {
         buyer = _buyer;
     }
 
+    function getProducts() external view returns(Product[] memory) {
+        return product;
+    }
+
     function getSeller() external view returns(address) {
         return seller;
     }
@@ -75,6 +80,10 @@ contract logistic {
 
     function getState() external view returns(stateOfShipping) {
         return state;
+    }
+
+    function getTotal() external view returns(uint) {
+        return total;
     }
 
     function insertProduct(
@@ -96,17 +105,15 @@ contract logistic {
         calculateTotal();
     }
 
-    function getProducts() external view returns(Product[] memory) {
-        return product;
-    }
-
-    function calculateTotal() public {
+    function calculateTotal() private {
 
         uint256 _total;
         
         for (uint256 i = 0; i < product.length; i++) {
             _total += (product[i].price * product[i].quantity);
         }
+        
+        total = _total;
         toPay = _total;
     }
 

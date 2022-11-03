@@ -1,6 +1,6 @@
 <div class="product-form-container">
     <div class="product-list">
-        <table>
+        <table *ngIf="products.length > 0">
             <thead>
                 <th>Id</th>
                 <th>Description</th>
@@ -15,6 +15,10 @@
                     <td>{{p.quantity}}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <th>Total: </th>
+                <th>{{total}}</th>
+            </tfoot>
         </table>
     </div>
     <form class="product-form" *ngIf="showForm" [formGroup]="productForm" (ngSubmit)="addProduct()">
