@@ -1,10 +1,13 @@
 <div class="vector-features-container">
+    <div class="form-container">
+        <form class="insert-form" [formGroup]="delegateForm" (submit)="delegate()">
+            <label for="delegate_address">Vector's Address:</label>
+            <input type="text" id="delegate_address" formControlName="delegateAddress"
+                placeholder="Delegate to another vector...">
+            <input type="submit" value="Confirm Transfer">
+        </form>
+    </div>
     <div class="features received">
         <button id="received" (click)="deliveryReceived()">Delivery Received</button>
     </div>
-    <form class="insert-form" [formGroup]="delegateForm" (submit)="delegate()">
-        <label for="delegate_address">Vector Address</label>
-        <input type="text" id="delegate_address" formControlName="delegateAddress" placeholder="Delegate to another vector...">
-        <input type="submit" value="Confirm Transfer">
-    </form>
 </div>

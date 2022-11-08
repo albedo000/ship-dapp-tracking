@@ -1,7 +1,7 @@
 <div class="customer-features-container">
     <form class="insert-form" [formGroup]="payForm" (submit)="pay()">
-        <label for="amount">Pay order (ETH)</label>
-        <input type="text" id="amount" formControlName="amount">
+        <label for="amount">Pay order (ETH):</label>
+        <input type="text" id="amount" placeholder="Insert import..." formControlName="amount">
         <input type="submit" value="Send">
     </form>
     <div class="features">

@@ -5,9 +5,14 @@
     gap: 3em;
 }
 
+.features {
+    display: flex;
+    flex-direction: row;
+}
+
 button {
+    padding: 1em;
     margin-right: 1em;
-    height: 3em;
 }
 
 input {

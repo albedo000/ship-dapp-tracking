@@ -28,4 +28,11 @@ th, td {
 
 form {
     display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 1vh;
+}
+
+input {
+    margin-bottom: 1em;
 }
