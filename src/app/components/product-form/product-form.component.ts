@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ethers } from 'ethers';
 
 import { ProductService } from 'src/app/services/product.service';
-import { TotalService } from 'src/app/services/total.service';
 
 import { Product } from 'src/app/utilities/product-type';
 
@@ -23,7 +22,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
   @Input() state!: number;
 
   products: Product[] = [];
-  total!: Number;
+  total!: number;
   showForm: boolean = false;
 
   productForm = new FormGroup({
@@ -33,22 +32,24 @@ export class ProductFormComponent implements OnInit, OnChanges {
     quantity: new FormControl<number>(0),
   });
 
-  constructor(private productService: ProductService, private totalService: TotalService) { }
+  constructor(private productService: ProductService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.productService.product$.subscribe(
+      res => this.products = res
+    )
+    this.productService.total$.subscribe(
+      res => this.total = res
+    )
+  }
 
   async ngOnChanges(_changes: SimpleChanges): Promise<void> {
     if (this.logistic !== undefined) {
-      this.getProducts();
+      this.productService.get(this.logistic);
     }
     if (this.user === User.buyer && this.state === 0) {
-      this.showForm = !this.showForm;
+      this.showForm = true;
     } else this.showForm = false;
-  }
-
-  async getProducts(): Promise<void> {
-    this.products = await this.productService.get(this.logistic);
-    this.total = await this.totalService.calculateTotal(this.logistic);
   }
 
   async addProduct(): Promise<void> {
@@ -57,6 +58,7 @@ export class ProductFormComponent implements OnInit, OnChanges {
     let price = this.productForm.value.price as number;
     let quantity = this.productForm.value.quantity as number;
     this.productService.add(this.logistic, id, description, price, quantity);
+    this.productForm.reset();
   }
 
 }

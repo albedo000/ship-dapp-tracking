@@ -16,7 +16,6 @@ contract logistic {
 
     Product[] public product;
     
-    uint256 public total;
     uint256 public toPay;
     uint256 public funds;
     uint256 public pendingReturns;
@@ -82,10 +81,6 @@ contract logistic {
         return state;
     }
 
-    function getTotal() external view returns(uint) {
-        return total;
-    }
-
     function insertProduct(
         string memory _id,
         string memory _description,
@@ -113,7 +108,6 @@ contract logistic {
             _total += (product[i].price * product[i].quantity);
         }
         
-        total = _total;
         toPay = _total;
     }
 

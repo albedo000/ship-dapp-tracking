@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Contract } from 'ethers';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { Product } from '../utilities/product-type';
 
@@ -11,9 +11,11 @@ import { Product } from '../utilities/product-type';
 })
 export class ProductService {
 
-  public serviceProduct: Product[] = [];
+  private products: Product[] = [];
+  private total!: number;
 
-  public product$!: Observable<Product[]>;
+  public total$ = new BehaviorSubject(0);
+  public product$ = new BehaviorSubject(this.products);
 
   constructor() { }
 
@@ -24,22 +26,24 @@ export class ProductService {
     });
   }
 
-  async get(contract: Contract): Promise<Product[]> {
-    let products = await contract['getProducts']();
-    if (products !== undefined) {
-      this.product$ = of(products);
-      this.product$.subscribe((res) => {
-        for (let i = 0; i < res.length; i++) {
-          this.serviceProduct[i] = {
-            id: res[i]['id'],
-            description: res[i]['description'],
-            price: res[i]['price'],
-            quantity: res[i]['quantity']
-          }
-        }
-      })
+  async get(contract: Contract): Promise<void> {
+    let _products = await contract['getProducts']();
+    this.total = 0;
+    this.products = [];
+    if (_products !== undefined) {
+      for (let i = 0; i < _products.length; i++) {
+        let _p: Product = {};
+        _p.id = _products[i].id;
+        _p.description = _products[i].description;
+        _p.price = _products[i].price;
+        _p.quantity = _products[i].quantity;
+        this.products.push(_p);
+      }
+      this.product$.next(this.products);
+      for (let i = 0; i < this.products.length; i++) {
+        this.total += _products[i].price * _products[i].quantity;
+        this.total$.next(this.total);
+      }
     }
-    return this.serviceProduct;
   }
-
 }
