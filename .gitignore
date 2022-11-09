@@ -12,7 +12,7 @@ npm-debug.log
 yarn-error.log
 
 #PHP Backend
-src/assets/backend/vendor
+assets/backend/vendor
 
 # IDEs and editors
 .idea/
