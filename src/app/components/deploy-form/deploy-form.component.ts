@@ -96,4 +96,6 @@ export class DeployFormComponent implements OnInit, OnChanges {
     }
   }
 
+  cameraQR() {}
+
 }

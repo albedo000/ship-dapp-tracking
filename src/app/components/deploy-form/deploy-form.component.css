@@ -66,3 +66,20 @@ label {
     margin-top: 1em;
     margin-bottom: 0.3em;
 }
+
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding-bottom: 1em;
+}
+
+#camera-button {
+    background-color: #565151;
+    border-color: #565151;
+}
+
+#camera-button:hover {
+    background-color: #e4e4e4;
+    border-color: #e4e4e4;
+}

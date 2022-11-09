@@ -25,7 +25,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "assets/js/qrcode.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,9 +93,6 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "scripts": [
-              ".src/assets/js/qrcode.min.js"
             ]
           }
         }

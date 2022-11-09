@@ -4,4 +4,4 @@ A decentralized DAPP made in Angular V. 14.1.0. **Disclaimer: this repository ha
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. **To use PHP backend place src/assets/backend folder into Xampp htdocs folder and download required dependencies**.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files. **To use PHP backend place /assets/backend folder into Xampp htdocs folder and download required dependencies**.
